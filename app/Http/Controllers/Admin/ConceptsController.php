@@ -13,6 +13,7 @@ use DB;
 use Validator;
 use Redirect;
 use IMS;
+use Excel;
 
 class ConceptsController extends Controller
 {
@@ -128,5 +129,47 @@ class ConceptsController extends Controller
 		$res->save();
 
 		return redirect(env('admin').'/concepts')->with('message','Estatus actualizado con éxito...');
+    }
+
+    public function show()
+    {
+        return View($this->folder.'up_xls',[
+			'data' 		=> new Concepts,
+			'form_url' 	=> Asset('/_upload_xls/')
+		]);
+    }
+
+    public function _upload_xls(Request $request)
+    {
+        $data = $request->all();
+        $lims_data_Concepts = new Concepts;
+        
+
+        $array = Excel::toArray(new Concepts, $data['file']);
+
+        $newData = []; 
+
+        for ($i=4; $i < count($array[0]) ; $i++) { 
+
+            $newData  = [
+                'titulo'   => ($array[0][$i][3] != '') ? $array[0][$i][3] : 'undefined',
+                'concepto' => ($array[0][$i][1] != '') ? $array[0][$i][1] : 'undefined',
+                'unidad'   => ($array[0][$i][2] != '') ? $array[0][$i][2] : 'undefined',
+                'precio'   => ($array[0][$i][4] != '') ? $array[0][$i][4] : 1,
+                'labour'   => ($array[0][$i][5] != '') ? $array[0][$i][5] : 1,
+                'status'   => 1
+            ];
+
+
+            $lims_data_Concepts->create($newData);
+
+        }
+
+        // return response()->json([
+        //     'newData' => $newData,
+        //     'data' => $array
+        // ]);
+
+        return redirect('/concepts')->with('message','Información registrada con éxito.');
     }
 }

@@ -89,7 +89,10 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         Route::get('concepts',[App\Http\Controllers\Admin\ConceptsController::class, 'index'])->name('concepts');
         Route::get('concepts/delete/{id}',[App\Http\Controllers\Admin\ConceptsController::class, 'delete']);
         Route::get('concepts/status/{id}',[App\Http\Controllers\Admin\ConceptsController::class, 'status']);
-        
+
+        Route::get('concepts/upload_xls',[App\Http\Controllers\Admin\ConceptsController::class, 'upload_xls'])->name('upload_xls');
+        Route::post('_upload_xls',[App\Http\Controllers\Admin\ConceptsController::class, '_upload_xls']);
+       
         /*
         |-----------------------------------------
         |Gestor de Evidencias

@@ -12,6 +12,10 @@
             <div class="card">
                 <div class="card-body table-responsive">
                     <p class="text-muted font-14 mb-3" style="position: relative;height: 50px;">
+                        <a href="{{ route('upload_xls') }}" type="button" class="btn btn-success waves-effect waves-light" style="float: left;">
+                            <span class="btn-label"><i class="mdi mdi-check-all"></i></span>Subir XLSX
+                        </a>
+
                         <a href="{{ Asset($link . 'create') }}" type="button" class="btn btn-success waves-effect waves-light" style="float: right;">
                             <span class="btn-label"><i class="mdi mdi-check-all"></i></span>Agregar elemento
                         </a>
