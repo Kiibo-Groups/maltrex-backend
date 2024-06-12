@@ -65,6 +65,8 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         Route::get('assignments/status/{id}',[App\Http\Controllers\Admin\AssignmentsController::class, 'status']);
         Route::post('assignments/trashConcept',[App\Http\Controllers\Admin\AssignmentsController::class, 'trashConcept'])->name('assignments.trashConcept');
         Route::get('assignments/print/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printAssign'])->name('assignments.print');
+        Route::get('assignments/printLabour/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printAssignLabour'])->name('assignments.print.labour');
+        Route::get('assignments/printCertificate/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printAssignCertificate'])->name('assignments.print.certificate');
         
 
         /*

@@ -310,7 +310,7 @@ class AssignmentsController extends Controller
         //     'total' => $lims_assigns_data->getTotal($input)['total'], 
         // ]);
 
-        $pdf = Pdf::loadView($this->folder.'print', [ 
+        $pdf = Pdf::loadView($this->folder.'print', [  
             'date'   => "El día ".$dia." de ".$mes." del ".$año,
             'school' => $dat->school->name,
             'concepts' => $concepts,    
@@ -320,4 +320,130 @@ class AssignmentsController extends Controller
         ]);
         return $pdf->download('invoice.pdf');
     }
+
+    public function printAssignLabour($uuid)
+    {
+        $assigns = Assignments::where('uuid', $uuid)->OrderBy('created_at','DESC')->with("School","Manager")->get()->toArray();
+        $dat     = Assignments::where('uuid', $uuid)->with("School","Manager")->first();
+        $lims_assigns_data = new Assignments;
+        $input = [];
+        $concepts = [];
+        $subTotal = 0;
+        $counterId = 1;
+
+        foreach ($assigns as $key) {
+            $input['cantidad'][] = $key['cantidad'];
+            $input['concepts'][] = $key['concepts'];
+
+
+            $getconc = Concepts::find($key['concepts']);
+
+            $totals = ($key['cantidad'] * $getconc->labour); 
+
+            $concepts[] = [
+                'id'       => $counterId,
+                'concepto' => $getconc->concepto,
+                'unidad'   => $getconc->unidad,
+                'cantidad' => $key['cantidad'],
+                'precio_unit' => $getconc->labour,
+                'mano_obra' => $getconc->labour,
+                'total'     => $totals
+            ];
+
+            $subTotal += $totals;
+            $counterId++;
+        }
+
+
+        // Obtenemos fecha actual
+        $fecha = date(now());
+        $fechaSegundos =  strtotime($fecha);
+
+        $dia = date('j' , $fechaSegundos);
+        $mes = date('F' , $fechaSegundos);
+        $año = date('Y' , $fechaSegundos);
+
+
+        // return response()->json([ 
+        //     'date'   => "El día ".$dia." de ".$mes." del ".$año,
+        //     'school' => $dat->school->name, 
+        //     'concepts' => $concepts,    
+        //     'subTotal' => $subTotal,
+        //     'iva'   => $lims_assigns_data->getTotal($input)['iva'],
+        //     'total' => $lims_assigns_data->getTotal($input)['total'], 
+        // ]);
+
+        $pdf = Pdf::loadView($this->folder.'print', [  
+            'date'   => "El día ".$dia." de ".$mes." del ".$año,
+            'school' => $dat->school->name,
+            'concepts' => $concepts,    
+            'subTotal' => $subTotal,
+            'iva'   => $lims_assigns_data->getTotal($input)['iva'],
+            'total' => $lims_assigns_data->getTotal($input)['total'], 
+        ]);
+
+        return $pdf->download('invoice.pdf');
+    }
+    
+    public function printAssignCertificate($uuid)
+    {
+        $assigns = Assignments::where('uuid', $uuid)->OrderBy('created_at','DESC')->with("School","Manager")->get()->toArray();
+        $dat     = Assignments::where('uuid', $uuid)->with("School","Manager")->first();
+        $lims_assigns_data = new Assignments;
+        $input = [];
+        $concepts = [];
+        $subTotal = 0;
+        $counterId = 1;
+
+        foreach ($assigns as $key) {
+            $input['cantidad'][] = $key['cantidad'];
+            $input['concepts'][] = $key['concepts'];
+
+
+            $getconc = Concepts::find($key['concepts']);
+
+            $totals = ($key['cantidad'] * $key['precio_unit']);
+            $concepts[] = [
+                'id'       => $counterId,
+                'concepto' => $getconc->concepto,
+                'unidad'   => $getconc->unidad,
+                'cantidad' => $key['cantidad'],
+                'precio_unit' => $key['precio_unit'],
+                'total'     => $totals
+            ];
+
+            $subTotal += $totals;
+            $counterId++;
+        }
+
+
+        // Obtenemos fecha actual
+        $fecha = date(now());
+        $fechaSegundos =  strtotime($fecha);
+
+        $dia = date('j' , $fechaSegundos);
+        $mes = date('F' , $fechaSegundos);
+        $año = date('Y' , $fechaSegundos);
+
+
+        // return response()->json([ 
+        //     'date'   => "El día ".$dia." de ".$mes." del ".$año,
+        //     'school' => $dat->school->name,
+        //     'concepts' => $concepts,    
+        //     'subTotal' => $subTotal,
+        //     'iva'   => $lims_assigns_data->getTotal($input)['iva'],
+        //     'total' => $lims_assigns_data->getTotal($input)['total'], 
+        // ]);
+
+        $pdf = Pdf::loadView($this->folder.'printCertificate', [ 
+            'date'   => "El día ".$dia." de ".$mes." del ".$año,
+            'school' => $dat->school->name,
+            'concepts' => $concepts,    
+            'subTotal' => $subTotal,
+            'iva'   => $lims_assigns_data->getTotal($input)['iva'],
+            'total' => $lims_assigns_data->getTotal($input)['total'], 
+        ]);
+        return $pdf->download('invoice.pdf');
+    }
+
 }

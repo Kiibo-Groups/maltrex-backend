@@ -21,6 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th> 
+                                <th>Director</th>
                                 <th>Direccion</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
@@ -35,6 +36,9 @@
                                 <tr>
                                     <td>
                                         {{ $row->name }}    
+                                    </td>
+                                    <td>
+                                        {{ $row->director }}
                                     </td>
                                     <td>
                                         {{ $row->direccion }}

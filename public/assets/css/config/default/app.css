@@ -338,7 +338,7 @@ body[data-sidebar-color="dark"] .left-side-menu {
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu .menuitem-active > a {
     color: #71b6f9; }
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu .menuitem-active .active {
-    color: #71b6f9; }
+    color: #FFEC01; }
   body[data-sidebar-color="dark"] .left-side-menu .nav-second-level li a,
   body[data-sidebar-color="dark"] .left-side-menu .nav-thrid-level li a {
     color: #9097a7; }

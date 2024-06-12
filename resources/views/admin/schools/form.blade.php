@@ -11,6 +11,16 @@
                         </div> 
 
                         <div class="col-md-6 mb-3">
+                            <label for="director" class="form-label">Nombre del director</label>
+                            <input type="text" name="director" id="director" class="form-control" value="{{ $data->director }}" @if (!$data->id) required="required" @endif>
+                        </div> 
+
+                        <div class="col-md-6 mb-3">
+                            <label for="cct" class="form-label">CCT</label>
+                            <input type="text" name="cct" id="cct" class="form-control" value="{{ $data->cct }}" @if (!$data->id) required="required" @endif>
+                        </div> 
+
+                        <div class="col-md-6 mb-3">
                             <label for="direccion" class="form-label">Dirección</label>
                             <input type="text" name="direccion" id="direccion" class="form-control" value="{{ $data->direccion }}" @if (!$data->id) required="required" @endif>
                         </div> 

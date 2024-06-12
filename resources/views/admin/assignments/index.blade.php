@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body table-responsive">
+                <div class="card-body">
                     <p class="text-muted font-14 mb-3" style="position: relative;height: 50px;">
                         <a href="{{ Asset($link . 'create') }}" type="button" class="btn btn-success waves-effect waves-light" style="float: right;">
                             <span class="btn-label"><i class="mdi mdi-check-all"></i></span>Agregar elemento
@@ -20,7 +20,8 @@
                     <table id="responsive-datatable" class="table dt-responsive nowrap">
                         <thead>
                             <tr> 
-                                <th>Escuela</th>  
+                                <th>Nombre del director</th>  
+                                <th>CCT</th>
                                 <th>IVA</th>
                                 <th>total</th>
                                 <th>Asignación</th>
@@ -32,7 +33,10 @@
                             @foreach ($data as $row)
                                 <tr> 
                                     <td>
-                                        {{ $row['school']['name'] }}  
+                                        {{ $row['school']['director'] }}  
+                                    </td>
+                                    <td>
+                                        {{ $row['school']['cct'] }}  
                                     </td>
                                     <td>
                                         ${{ number_format($row['iva'],2) }}
@@ -73,9 +77,14 @@
                                                     <i class="mdi mdi-border-color"></i> Editar 
                                                 </a>
                                                 <a href="{{ route('assignments.print', $row['uuid']) }}" class="dropdown-item">
-                                                    <i class="mdi mdi-cloud-print"></i> Imprimir Formato
+                                                    <i class="mdi mdi-cloud-print"></i> Imprimir Alcance
                                                 </a>
-                                               
+                                                <a href="{{ route('assignments.print.labour', $row['uuid']) }}" class="dropdown-item">
+                                                    <i class="mdi mdi-cloud-print"></i> Imprimir Mano de obra
+                                                </a>
+                                                <a href="{{ route('assignments.print.certificate', $row['uuid']) }}" class="dropdown-item">
+                                                    <i class="mdi mdi-cloud-print"></i> Imprimir Acta de entrega
+                                                </a>
                                                 <div class="dropdown-divider"></div>
 
                                                 <button type="button"

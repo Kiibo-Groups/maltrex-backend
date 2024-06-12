@@ -88,10 +88,10 @@
                     </td>
                     <td style=" border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; vertical-align:top; background-color:#000000;">
                         <p style="margin:5.55pt 3.2pt 0pt 2.6pt; text-align:center; font-size:8pt;"><strong><em><span style="letter-spacing:-0.1pt; color:#ffffff;">CANTIDAD</span></em></strong></p>
-                    </td>
+                    </td> 
                     <td style=" border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; vertical-align:top; background-color:#000000;">
                         <p style="margin:5.55pt 1.25pt 0pt 1.1pt; text-align:center; font-size:8pt;"><strong><em><span style="color:#ffffff;">PRECIO</span></em></strong><strong><em><span style="letter-spacing:-0.35pt; color:#ffffff;">&nbsp;</span></em></strong><strong><em><span style="letter-spacing:-0.1pt; color:#ffffff;">UNITARIO</span></em></strong></p>
-                    </td>
+                    </td> 
                     <td style=" border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; vertical-align:top; background-color:#000000;">
                         <p style="margin:0.9pt 3.25pt 0pt 2.6pt; text-align:center; font-size:8pt;"><strong><em><span style="letter-spacing:-0.1pt; color:#ffffff;">TOTAL</span></em></strong></p>
                         <p style="margin:0.25pt 3.45pt 0pt 2.6pt; text-align:center; font-size:8pt;"><strong><em><span style="color:#ffffff;">(antes</span></em></strong><strong><em><span style="letter-spacing:-0.05pt; color:#ffffff;">&nbsp;</span></em></strong><strong><em><span style="color:#ffffff;">de</span></em></strong><strong><em><span style="letter-spacing:-0.05pt; color:#ffffff;">&nbsp;</span></em></strong><strong><em><span style="letter-spacing:-0.2pt; color:#ffffff;">IVA)</span></em></strong></p>

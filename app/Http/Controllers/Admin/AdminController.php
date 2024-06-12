@@ -81,14 +81,14 @@ class AdminController extends Controller
 				if ($lim_data_account->logo != NULL) { 
 					// Validamos que no sea la imagen por defecto
 				    if ($lim_data_account->logo != 'user-1.png') {
-						@unlink('assets/images/users/'.$lim_data_account->logo);
+						@unlink('public/assets/images/users/'.$lim_data_account->logo);
 					}
 				}
 				
 				$ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
 				$imageName = date("Ymdhis");
 				$imageName = $imageName . '.' . $ext;
-				$image->move('assets/images/users', $imageName);
+				$image->move('public/assets/images/users', $imageName);
 	
 				$input['logo'] = $imageName;
 			}
@@ -100,14 +100,14 @@ class AdminController extends Controller
 				if ($lim_data_account->logo_top != NULL) { 
 					// Validamos que no sea la imagen por defecto
 				    if ($lim_data_account->logo_top != 'logo-top.png') {
-						@unlink('assets/images/users/'.$lim_data_account->logo_top);
+						@unlink('public/assets/images/users/'.$lim_data_account->logo_top);
 					}
 				}
 				
 				$ext = pathinfo($imageTop->getClientOriginalName(), PATHINFO_EXTENSION);
 				$imageName = date("Ymdhis");
 				$imageName = $imageName . '.' . $ext;
-				$imageTop->move('assets/images/users', $imageName);
+				$imageTop->move('public/assets/images/users', $imageName);
 	
 				$input['logo_top'] = $imageName;
 			}
@@ -119,14 +119,14 @@ class AdminController extends Controller
 				if ($lim_data_account->logo_top_sm != NULL) { 
 					// Validamos que no sea la imagen por defecto
 				    if ($lim_data_account->logo_top_sm != 'logo-sm.png') {
-						@unlink('assets/images/users/'.$lim_data_account->logo_top_sm);
+						@unlink('public/assets/images/users/'.$lim_data_account->logo_top_sm);
 					}
 				}
 				
 				$ext = pathinfo($imageTopSm->getClientOriginalName(), PATHINFO_EXTENSION);
 				$imageName = date("Ymdhis");
 				$imageName = $imageName . '.' . $ext;
-				$imageTopSm->move('assets/images/users', $imageName);
+				$imageTopSm->move('public/assets/images/users', $imageName);
 	
 				$input['logo_top_sm'] = $imageName;
 			}

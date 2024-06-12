@@ -60,7 +60,7 @@ class ManagersController extends Controller
             if(isset($input['pic_profile']))
             {
                 $filename   = time().rand(111,699).'.' .$input['pic_profile']->getClientOriginalExtension(); 
-                $input['pic_profile']->move("uploads/pic_profile/", $filename);   
+                $input['pic_profile']->move("public/uploads/pic_profile/", $filename);   
                 $input['pic_profile'] = $filename;   
             }
              
@@ -102,10 +102,10 @@ class ManagersController extends Controller
             
             if(isset($data['pic_profile']))
             {
-                @unlink("uploads/pic_profile/".$lims_settings_data->pic_profile);
+                @unlink("public/uploads/pic_profile/".$lims_settings_data->pic_profile);
 
                 $filename   = time().rand(111,699).'.' .$data['pic_profile']->getClientOriginalExtension(); 
-                $data['pic_profile']->move("uploads/pic_profile/", $filename);   
+                $data['pic_profile']->move("public/uploads/pic_profile/", $filename);   
                 $add->img = $filename;   
             }
 

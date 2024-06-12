@@ -18,6 +18,7 @@
                             <tr> 
                                 <th>Jefe de obra</th>
                                 <th>Antes</th>
+                                <th>Inter</th>
                                 <th>Despues</th>
                                 <th>status</th>
                                 <th style="text-align: right">Opciones</th>
@@ -36,6 +37,9 @@
                                         <i class="mdi mdi-tooltip-image"></i>
                                     </td>
                                     <td>
+                                        <i class="mdi mdi-tooltip-image"></i>
+                                    </td>
+                                    <td>
                                         @if ($row->status == 1) 
                                             <span class="badge bg-success rounded-pill" onclick="confirmAlert('{{ Asset($link . 'status/' . $row->id) }}')">
                                                 Activo <i class="mdi mdi-check-all"></i> </span>
@@ -46,7 +50,7 @@
 
                                     </td>  
                                     <td width="17%" style="text-align: right"> 
-                                        <a href="{{ Asset($link . $row->id . '/edit') }}"
+                                        <a href="#"
                                             class="btn btn-success waves-effect waves-light btn m-b-15 ml-2 mr-2 btn-md"
                                             data-toggle="tooltip" data-placement="top"
                                             data-original-title="Editar">
