@@ -100,13 +100,12 @@ class ManagersController extends Controller
             $input = $request->all();
             $lims_settings_data = Managers::find($id);
             
-            if(isset($data['pic_profile']))
+            
+            if(isset($input['pic_profile']))
             {
-                @unlink("public/uploads/pic_profile/".$lims_settings_data->pic_profile);
-
-                $filename   = time().rand(111,699).'.' .$data['pic_profile']->getClientOriginalExtension(); 
-                $data['pic_profile']->move("public/uploads/pic_profile/", $filename);   
-                $add->img = $filename;   
+                $filename   = time().rand(111,699).'.' .$input['pic_profile']->getClientOriginalExtension(); 
+                $input['pic_profile']->move("public/uploads/pic_profile/", $filename);   
+                $input['pic_profile'] = $filename;   
             }
 
             $input['otp'] = 0;
