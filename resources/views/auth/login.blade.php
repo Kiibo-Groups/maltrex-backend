@@ -3,12 +3,15 @@
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6 col-xl-4">
+    <div class="col-md-12 col-lg-6 col-xl-6">
+        <div class="card"></div>
+    </div>
+    <div class="col-md-12 col-lg-6 col-xl-5">
         <div class="card" style="border-radius: 25px;">
             <div class="card-body p-4" style="box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);">
                 
                 <div class="text-center mb-4">
-                    <img src="{{ asset('assets/images/logo_maltrex.png') }}" style="width: 100%;margin: 25px 0;">
+                    <img src="{{ asset('assets/images/avatar2.jpg') }}" style="width: 50%;border-radius: 25px;margin: 15px 0;">
                     <h4 class="text-uppercase mt-0">Cuenta Administrativa</h4>
                     <p class="text-muted mt-2 mb-4">Ingresa tus datos para iniciar sesión</p>
                 </div>

@@ -33,7 +33,7 @@
         "showRightSidebarOnPageLoad": true}'
         data-topbar-color="light"
     @if (Route::is('login'))
-        style="background: url('{{asset('assets/images/bg-pattern-2.png')}}'), #363740;background-position: top !important;
+        style="background: url('{{asset('assets/images/background.png')}}'), #FFEC01;background-position: top !important;
         background-size: cover !important;"
     @endif
 >
