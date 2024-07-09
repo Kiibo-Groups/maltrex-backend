@@ -12,6 +12,7 @@ class Evidence extends Model
     protected $fillable = [
         'managers_id',
         'assignments_id',
+        'conceptId',
         'antes',
         'durante',
         'despues',

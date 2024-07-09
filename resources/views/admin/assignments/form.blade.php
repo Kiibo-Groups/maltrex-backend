@@ -1,4 +1,6 @@
- 
+ @section('css')
+ <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+ @endsection
 <!-- Start Content-->
 <div class="container-fluid">
     <div class="row">
@@ -46,7 +48,7 @@
             
                                     <div class="col-md-6 mb-3">
                                         <label for="concepto" class="form-label">Concepto</label>
-                                        <select name="concepts[]" class="form-select">
+                                        <select name="concepts[]" class="form-select" data-toggle="select2" data-width="100%">
                                             @foreach ($concepts as $cons)
                                                 <option value="{{ $cons->id }}" @if($item->concepto == $cons->id) selected @endif>{{ $cons->titulo }} | ({{ $cons->unidad }})</option>
                                             @endforeach
@@ -70,8 +72,8 @@
         
                                 <div class="col-md-6 mb-3">
                                     <label for="concepto" class="form-label">Concepto</label>
-                                    <select name="concepts[]" class="form-select">
-                                        @foreach ($concepts as $cons)
+                                    <select name="concepts[]" class="form-select"  data-toggle="select2"  data-width="100%">
+                                        @foreach ($concepts as $cons) 
                                             <option value="{{ $cons->id }}" @if($data->concepto == $cons->id) selected @endif>{{ $cons->titulo }} | ({{ $cons->unidad }})</option>
                                         @endforeach
                                     </select>
@@ -111,7 +113,10 @@
 </div>
  
 @section('js')
+
     
+<script src="{{ asset('assets/libs/multiselect/js/jquery.multi-select.js') }}"></script>
+<script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
 <script> 
     !function ($) {
         "use strict";
@@ -120,8 +125,8 @@
         let btnAddStrat = document.getElementById('add-concept');
         let AddCST = 0;
 
-         // Agregado de elementos para ESTRATIGRAFIA
-         btnAddStrat.addEventListener('click', () => {
+        // Agregado de elementos para ESTRATIGRAFIA
+        btnAddStrat.addEventListener('click', () => {
             AddCST++;
             let containerStrat = '<section class="row" id="element_wrap_'+AddCST+'">'
                 +'<div class="col-md-2 mb-3">'
@@ -130,7 +135,7 @@
                 +'</div> '
                 +'<div class="col-md-6 mb-3">'
                     +'<label for="concepto" class="form-label">Concepto</label>'
-                    +'<select name="concepts[]" class="form-select">'
+                    +'<select name="concepts[]" class="form-select" data-toggle="select3"  data-width="100%">'
                         +'@foreach ($concepts as $cons)'
                             +'<option value="{{ $cons->id }}">{{ $cons->titulo }} | ({{ $cons->unidad }})</option>'
                         +'@endforeach'
@@ -143,9 +148,11 @@
                     +'</button>'
                 +'</div>'
             +'</section>'; 
-
+            
             containerW.insertAdjacentHTML('beforeend', containerStrat);
         });
+
+        $('[data-toggle="select2"]').select2();
 
     }(window.jQuery);
 
@@ -161,8 +168,7 @@
                 console.log(data); // JSON data parsed by `data.json()` call
             }
         });
-    }
-
+    } 
  
     async function postData(url = '', data = {}) {
         const token = document.head.querySelector("[name~=csrf-token][content]").content;
@@ -182,6 +188,6 @@
             body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
         return response.json(); // parses JSON response into native JavaScript objects
-    }
+    } 
 </script>
 @endsection

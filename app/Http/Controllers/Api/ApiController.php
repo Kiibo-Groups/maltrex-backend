@@ -140,13 +140,37 @@ class ApiController extends Controller
 		try {
 			$assigns = Assignments::where('manager_id', $user_id)->where('status',1)->OrderBy('created_at','DESC')->select('uuid')->distinct('uuid')->get();
 			$data = [];
-			
+			$evidences = null;
+
 			foreach ($assigns as $key) {
 
 				// GetConcepts
-				$getConc = Assignments::where('uuid', $key->uuid)->where('manager_id', $user_id)->OrderBy('created_at','DESC')->select('uuid','concepts')->get();
+				$getConc = Assignments::where('uuid', $key->uuid)->where('manager_id', $user_id)->OrderBy('created_at','DESC')->select('id','uuid','concepts','status')->get();
 				foreach ($getConc as $gtc) {
-					$concepts[] = Concepts::find($gtc->concepts);
+					$getConcept = Concepts::find($gtc->concepts);
+
+					if ($gtc->status == 3) {
+						$getEvids = Evidence::where('managers_id', $user_id)->where('conceptId', $gtc->concepts)->first();
+						if ($getEvids) {
+							$evidences = collect($getEvids)->except('assignments_id','conceptId','created_at','managers_id','updated_at');
+						}
+					} 
+
+					$concepts[] = [
+						'assignments_id' => $gtc->id,
+						'conceptId'		 => $gtc->concepts,
+						'id'		=> $getConcept->id,
+						'titulo'	=> $getConcept->titulo,
+						'concepto'	=> $getConcept->concepto,
+						'unidad'	=> $getConcept->unidad,
+						'precio'	=> $getConcept->precio,
+						'labour'	=> $getConcept->labour,
+						'status'	=> $getConcept->statu,
+						'linkToView' => asset('uploads/evidences/'),
+						'evidences' => $evidences
+					];
+
+					$evidences = null;
 				}
 				
 				$getAssign = Assignments::OrderBy('created_at','DESC')->where('uuid', $key->uuid)->where('manager_id', $user_id)->with("School","Manager")->first();
@@ -165,10 +189,8 @@ class ApiController extends Controller
 				];
 				
 				$concepts = [];
-			}
-
-
-
+				
+			} 
 			return response()->json([
 				'assigns' => $assigns,
 				'data' => $data
@@ -183,13 +205,37 @@ class ApiController extends Controller
 		try {
 			$assigns = Assignments::where('manager_id', $user_id)->where('status',3)->OrderBy('created_at','DESC')->select('uuid')->distinct('uuid')->get();
 			$data = [];
+			$evidences = null;
 			
 			foreach ($assigns as $key) {
 
 				// GetConcepts
-				$getConc = Assignments::where('uuid', $key->uuid)->where('manager_id', $user_id)->OrderBy('created_at','DESC')->select('uuid','concepts')->get();
+				$getConc = Assignments::where('uuid', $key->uuid)->where('manager_id', $user_id)->OrderBy('created_at','DESC')->select('id','uuid','concepts','status')->get();
 				foreach ($getConc as $gtc) {
-					$concepts[] = Concepts::find($gtc->concepts);
+					$getConcept = Concepts::find($gtc->concepts);
+
+					if ($gtc->status == 3) {
+						$getEvids = Evidence::where('managers_id', $user_id)->where('conceptId', $gtc->concepts)->first();
+						if ($getEvids) {
+							$evidences = collect($getEvids)->except('assignments_id','conceptId','created_at','managers_id','updated_at');
+						}
+					} 
+
+					$concepts[] = [
+						'assignments_id' => $gtc->id,
+						'conceptId'		 => $gtc->concepts,
+						'id'		=> $getConcept->id,
+						'titulo'	=> $getConcept->titulo,
+						'concepto'	=> $getConcept->concepto,
+						'unidad'	=> $getConcept->unidad,
+						'precio'	=> $getConcept->precio,
+						'labour'	=> $getConcept->labour,
+						'status'	=> $getConcept->statu,
+						'linkToView' => asset('uploads/evidences/'),
+						'evidences' => $evidences
+					];
+
+					$evidences = null;
 				}
 				
 				$getAssign = Assignments::OrderBy('created_at','DESC')->where('uuid', $key->uuid)->where('manager_id', $user_id)->with("School","Manager")->first();
@@ -228,7 +274,8 @@ class ApiController extends Controller
 
 		$data['assignId']	= $input['assignId'];
 		$data['assignUuid'] = $input['assignUuid'];
-		$data['managerId'] = $input['managerId'];
+		$data['managerId'] 	= $input['managerId'];
+		$data['conceptId']	= $input['conceptId'];
 
 		$path = '/' . 'uploads/';
 		$path_file;
@@ -276,14 +323,11 @@ class ApiController extends Controller
 			
 		}
 
-
-		$assign = Assignments::where('uuid', $input['assignUuid'])->get();
-		foreach ($assign as $key) {	
-			$ass = Assignments::find($key->id);
-			$ass->status = 3;
-			$ass->save();
-		}
-
+		// Obtenemos la asignacion
+		$assign = Assignments::where('uuid', $input['assignUuid'])->where('concepts',$input['conceptId'])->first();
+		$assign->status = 3;
+		$assign->save();
+ 
 		$data['picsBefore'] = json_encode($data['picsBefore']);
 		$data['picsDuring'] = json_encode($data['picsDuring']);
 		$data['picsAfter']  = json_encode($data['picsAfter']);
@@ -293,6 +337,7 @@ class ApiController extends Controller
 		$evidence = [
 			'managers_id' => $data['managerId'],
 			'assignments_id' => $data['assignId'],
+			'conceptId'		=> $data['conceptId'],
 			'antes' => $data['picsBefore'],
 			'durante' => $data['picsDuring'],
 			'despues' => $data['picsAfter'],

@@ -47,8 +47,8 @@ class EvidenceController extends Controller
             $evidence = Evidence::find($id);
             
             $zip = new ZipArchive();
-            $destination = 'uploads/evidences/downloads';
-            $folder_down = "uploads/evidences/". $type;
+            $destination = 'public/uploads/evidences/downloads';
+            $folder_down = "public/uploads/evidences/". $type;
             $url_download = $destination. "/" .$type."_".$id.".zip";
             $pics = [];
 
