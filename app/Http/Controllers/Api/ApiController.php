@@ -248,6 +248,20 @@ class ApiController extends Controller
 			
 		}
 
+		if ($request->has('picsDuring')) {
+			$path_file = 'evidences/during/';
+			foreach ($input['picsDuring'] as $key => $value) {
+				$picsDuringBase64 = $value;
+				$imageDuring = substr($picsDuringBase64, strpos($picsDuringBase64, ",")+1);
+				$imagenDuringDecodificada = base64_decode($imageDuring);	
+				$imageDuringName =  substr(md5(time()+$key),0,15) . '.png';
+				file_put_contents(public_path($path . $path_file . $imageDuringName), $imagenDuringDecodificada);
+			
+				$data['picsDuring'][] =  $imageDuringName;
+			}
+			
+		}
+
 		if ($request->has('picsAfter')) {
 			$path_file = 'evidences/after/';
 			foreach ($input['picsAfter'] as $key => $value) {
@@ -271,6 +285,7 @@ class ApiController extends Controller
 		}
 
 		$data['picsBefore'] = json_encode($data['picsBefore']);
+		$data['picsDuring'] = json_encode($data['picsDuring']);
 		$data['picsAfter']  = json_encode($data['picsAfter']);
 		
 
@@ -279,7 +294,7 @@ class ApiController extends Controller
 			'managers_id' => $data['managerId'],
 			'assignments_id' => $data['assignId'],
 			'antes' => $data['picsBefore'],
-			'durante' => 'undefined',
+			'durante' => $data['picsDuring'],
 			'despues' => $data['picsAfter'],
 			'status' => 1
 		];

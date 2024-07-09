@@ -100,6 +100,8 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         */  
         Route::resource('evidence','\App\Http\Controllers\Admin\ConceptsController');
         Route::get('evidence',[App\Http\Controllers\Admin\EvidenceController::class, 'index'])->name('evidence');
+        Route::get('getEvidence/{id}/{type}',[App\Http\Controllers\Admin\EvidenceController::class, 'getEvidence']);
+        Route::get('viewEvidence/{id}',[App\Http\Controllers\Admin\EvidenceController::class, 'viewEvidence']);
         
 
         /*
