@@ -15,8 +15,9 @@
 
                     <table id="responsive-datatable" class="table dt-responsive nowrap">
                         <thead>
-                            <tr> 
-                                <th>Jefe de obra</th>
+                            <tr>  
+                                <th># Levantamiento</th>
+                                <th>Concepto</th>
                                 <th>Antes</th>
                                 <th>Inter</th>
                                 <th>Despues</th>
@@ -26,40 +27,45 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $row)
-                                <tr>
+                                <tr> 
+                                    <td>#{{ $row['assignments_id'] }}</td>
                                     <td>
-                                        {{ $row->managers_id }}    
+                                        @if ($row['concept'])
+                                            {{ $row['concept']['titulo'] }}
+                                        @else
+                                         Indefinido
+                                        @endif 
                                     </td>
                                     <td>
-                                        <a href="{{ url('getEvidence/'.$row->id.'/before') }}">
+                                        <a href="{{ url('getEvidence/'.$row['id'].'/before') }}">
                                             <i class="mdi mdi-cloud-download-outline"></i>
                                             &nbsp; Descargar
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ url('getEvidence/'.$row->id.'/during') }}">
+                                        <a href="{{ url('getEvidence/'.$row['id'].'/during') }}">
                                             <i class="mdi mdi-cloud-download-outline"></i>
                                             &nbsp; Descargar
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ url('getEvidence/'.$row->id.'/after') }}">
+                                        <a href="{{ url('getEvidence/'.$row['id'].'/after') }}">
                                             <i class="mdi mdi-cloud-download-outline"></i>
                                             &nbsp; Descargar
                                         </a>
                                     </td>
                                     <td>
-                                        @if ($row->status == 1) 
-                                            <span class="badge bg-success rounded-pill" onclick="confirmAlert('{{ Asset($link . 'status/' . $row->id) }}')">
+                                        @if ($row['status'] == 1) 
+                                            <span class="badge bg-success rounded-pill" onclick="confirmAlert('{{ Asset($link . 'status/' . $row['id']) }}')">
                                                 Activo <i class="mdi mdi-check-all"></i> </span>
                                         @else 
-                                            <span class="badge bg-danger rounded-pill" onclick="confirmAlert('{{ Asset($link . 'status/' . $row->id) }}')">
+                                            <span class="badge bg-danger rounded-pill" onclick="confirmAlert('{{ Asset($link . 'status/' . $row['id']) }}')">
                                                 Inactivo <i class="mdi mdi-close"></i> </span>
                                         @endif
 
                                     </td>  
                                     <td width="17%" style="text-align: right"> 
-                                        <a href="{{ url('viewEvidence/'.$row->id) }}"
+                                        <a href="{{ url('viewEvidence/'.$row['id']) }}"
                                             class="btn btn-success waves-effect waves-light btn m-b-15 ml-2 mr-2 btn-md"
                                             data-toggle="tooltip" data-placement="top"
                                             data-original-title="Editar">

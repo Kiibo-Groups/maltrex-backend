@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Evidence;
+use App\Models\Concepts;
 
 use Auth;
 use DB;
@@ -24,8 +25,18 @@ class EvidenceController extends Controller
      */
     public function index()
     {
+
+        $Evidence =  new Evidence;
+
+
+
+        // return response()->json([
+        //     'data' 	=> $data,
+		// 	'link' 	=> '/evidence/'
+        // ]);
+
         return View($this->folder.'index',[
-			'data' 	=> Evidence::OrderBy('created_at','DESC')->get(),
+			'data' 	=> $Evidence->viewEvidence(),
 			'link' 	=> '/evidence/'
 		]);
     } 
