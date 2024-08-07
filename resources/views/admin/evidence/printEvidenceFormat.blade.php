@@ -186,7 +186,7 @@
             <td class="column6">&nbsp; </td>
           </tr>
           <tr class="row30">
-            @if (count($data['durante']))
+            @if (count($data['durante']) > 0)
             @for ($i = 0; $i < count($data['durante']); $i++)
             <td class="column{{$i}}"> 
               <img src="{{ public_path('uploads/evidences/during/'.$data['durante'][$i]) }}" width="100px" height="auto" />  
