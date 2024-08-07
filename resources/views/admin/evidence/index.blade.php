@@ -65,13 +65,20 @@
 
                                     </td>  
                                     <td width="17%" style="text-align: right"> 
-                                        <a href="{{ url('viewEvidence/'.$row['id']) }}"
-                                            class="btn btn-success waves-effect waves-light btn m-b-15 ml-2 mr-2 btn-md"
-                                            data-toggle="tooltip" data-placement="top"
-                                            data-original-title="Editar">
-                                            <i class="mdi mdi-cloud-download-outline"></i>
-                                            &nbsp; Descargar
-                                        </a> 
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary  dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Menú <i class="mdi mdi-chevron-down"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a href="{{ url('viewEvidence/'.$row['id']) }}" class="dropdown-item">
+                                                    <i class="mdi mdi-border-color"></i> Ver Graficas 
+                                                </a>
+                                                <a href="{{ route('evidences.print', $row['id']) }}" target="_blank" class="dropdown-item">
+                                                    <i class="mdi mdi-cloud-print"></i> Imprimir Formato de Evidencias
+                                                </a>
+                                            </div>
+                                        </div>
+ 
                                     </td>
                                 </tr>
                             @endforeach

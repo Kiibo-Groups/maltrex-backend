@@ -67,6 +67,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         Route::get('assignments/print/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printAssign'])->name('assignments.print');
         Route::get('assignments/printLabour/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printAssignLabour'])->name('assignments.print.labour');
         Route::get('assignments/printCertificate/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printAssignCertificate'])->name('assignments.print.certificate');
+        Route::get('assignments/printMaterials/{uuid}',[App\Http\Controllers\Admin\AssignmentsController::class, 'printMaterials'])->name('assignments.print.materials');
         
 
         /*
@@ -102,6 +103,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         Route::get('evidence',[App\Http\Controllers\Admin\EvidenceController::class, 'index'])->name('evidence');
         Route::get('getEvidence/{id}/{type}',[App\Http\Controllers\Admin\EvidenceController::class, 'getEvidence']);
         Route::get('viewEvidence/{id}',[App\Http\Controllers\Admin\EvidenceController::class, 'viewEvidence']);
+        Route::get('evidence/printEvidenceFromat/{uuid}',[App\Http\Controllers\Admin\EvidenceController::class, 'printAssignEvidenceFromat'])->name('evidences.print');
         
 
         /*

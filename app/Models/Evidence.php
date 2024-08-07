@@ -49,4 +49,27 @@ class Evidence extends Model
       return collect($data);
     }
 
+
+    public function getEvidence($id)
+    {
+      $req = Evidence::where('id',$id)->with(['assignments'])->first();
+      $data = [];
+
+      $getconc = Concepts::find($req->conceptId);
+          
+      $data = [
+        'id'  => $req->id,
+        'managers_id'   => $req->managers_id,
+        'assignments_id'    => $req->assignments_id,
+        'conceptId' => $req->conceptId,
+        'antes'     => json_decode($req->antes, true),
+        'durante'   => json_decode($req->durante, true),
+        'despues'   => json_decode($req->despues, true),
+        'status'    => $req->status,
+        'concept'   => $getconc
+      ];
+
+      return $data;
+    }
+
 }

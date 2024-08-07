@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Helper;
+use Illuminate\Support\Str; 
 
 use App\Models\Evidence;
 use App\Models\Concepts;
@@ -27,8 +30,6 @@ class EvidenceController extends Controller
     {
 
         $Evidence =  new Evidence;
-
-
 
         // return response()->json([
         //     'data' 	=> $data,
@@ -117,5 +118,23 @@ class EvidenceController extends Controller
         } catch (\Throwable $th) {
             return redirect(env('admin').'/evidence')->with('error', $th->getMessage());
         }
+    }
+
+    public function printAssignEvidenceFromat($uuid)
+    {
+        
+        $Evidence   =  new Evidence;
+        $data       =  $Evidence->getEvidence($uuid);
+        // return response()->json([ 
+        //     'data' => $Evidence->getEvidence($uuid)
+        // ]);
+
+        $pdf = Pdf::loadView($this->folder.'printEvidenceFormat', [
+            'data' => $data
+        ] );
+
+        // return redirect()->back()->with('status', 'PDF guardado con exito');
+        // return $pdf->download('invoice.pdf');
+        return $pdf->stream();
     }
 }

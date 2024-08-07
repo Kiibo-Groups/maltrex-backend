@@ -85,6 +85,9 @@
                                                 <a href="{{ route('assignments.print.certificate', $row['uuid']) }}" class="dropdown-item">
                                                     <i class="mdi mdi-cloud-print"></i> Imprimir Acta de entrega
                                                 </a>
+                                                <a href="{{ route('assignments.print.materials', $row['uuid']) }}" class="dropdown-item">
+                                                    <i class="mdi mdi-cloud-print"></i> Imprimir Acta de Materiales
+                                                </a>
                                                 <div class="dropdown-divider"></div>
 
                                                 <button type="button"
