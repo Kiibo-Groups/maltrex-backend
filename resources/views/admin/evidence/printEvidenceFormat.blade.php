@@ -138,7 +138,11 @@
             </tr>
             <tr class="row11">
               <td class="column0 style19 s style19" colspan="6" rowspan="4">
+                @if ($data['concept'])
                 {{$data['concept']['concepto']}}
+                @else 
+                Indefinido
+                @endif
               </td>
               <td class="column6">&nbsp;</td>
             </tr>
@@ -198,7 +202,7 @@
               </td> 
             @endfor
           </tr> 
-          
+
         </tbody>
     </table>
   </body>
