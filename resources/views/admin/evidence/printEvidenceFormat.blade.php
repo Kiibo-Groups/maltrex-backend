@@ -172,12 +172,14 @@
             <td class="column6">&nbsp;</td>
           </tr>
           <tr class="row17">
-            @if (count($data['antes']) > 0)
+            @if ($data['antes'])
             @for ($i = 0; $i < count($data['antes']); $i++)
             <td class="column{{$i}}"> 
               <img src="{{ public_path('uploads/evidences/before/'.$data['antes'][$i]) }}" width="100px" height="auto" />  
             </td> 
             @endfor
+            @else
+            <h1>SIN EVIDENCIA ENVIADA</h1>
             @endif
           </tr> 
 
@@ -186,12 +188,14 @@
             <td class="column6">&nbsp; </td>
           </tr>
           <tr class="row30">
-            @if (count($data['durante']) > 0)
+            @if ($data['durante'])
             @for ($i = 0; $i < count($data['durante']); $i++)
             <td class="column{{$i}}"> 
               <img src="{{ public_path('uploads/evidences/during/'.$data['durante'][$i]) }}" width="100px" height="auto" />  
             </td> 
             @endfor
+            @else
+            <h1>SIN EVIDENCIA ENVIADA</h1>
             @endif
           </tr> 
 
@@ -200,12 +204,14 @@
             <td class="column6">&nbsp;</td>
           </tr> 
           <tr class="row44">
-            @if (count($data['despues']) > 0)
+            @if ($data['despues'])
             @for ($i = 0; $i < count($data['despues']); $i++)
               <td class="column{{$i}}"> 
                 <img src="{{ public_path('uploads/evidences/after/'.$data['despues'][$i]) }}" width="100px" height="auto" />  
               </td> 
             @endfor
+            @else
+            <h1>SIN EVIDENCIA ENVIADA</h1>
             @endif
           </tr> 
 
