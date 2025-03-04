@@ -327,21 +327,24 @@ body[data-sidebar-color="dark"] .left-side-menu {
   background-color: #343a40;
   box-shadow: none; }
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu > ul > li > a {
-    color: #9097a7; }
+    color: #fff; /*#9097a7*/ }
     body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu > ul > li > a:hover, body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu > ul > li > a:focus, body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu > ul > li > a:active {
       color: #c8cddc; }
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu > ul > li > a.mm-active {
     color: #ffffff;
     background-color: #3a4047; }
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu .menu-title {
-    color: #adb5bd; }
+    color: #fff; /*#adb5bd;*/ }
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu .menuitem-active > a {
     color: #71b6f9; }
   body[data-sidebar-color="dark"] .left-side-menu #sidebar-menu .menuitem-active .active {
     color: #FFEC01; }
   body[data-sidebar-color="dark"] .left-side-menu .nav-second-level li a,
   body[data-sidebar-color="dark"] .left-side-menu .nav-thrid-level li a {
-    color: #9097a7; }
+    /*color: #9097a7;*/ 
+    color: #fff;
+    background: #D88025;
+  }
     body[data-sidebar-color="dark"] .left-side-menu .nav-second-level li a:focus, body[data-sidebar-color="dark"] .left-side-menu .nav-second-level li a:hover,
     body[data-sidebar-color="dark"] .left-side-menu .nav-thrid-level li a:focus,
     body[data-sidebar-color="dark"] .left-side-menu .nav-thrid-level li a:hover {

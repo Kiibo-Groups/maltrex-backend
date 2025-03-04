@@ -4,7 +4,7 @@
 
 body[data-sidebar-color="dark"] .left-side-menu {
     /* background-color: rgb(245, 245, 245); */
-     background-color: rgb(42, 48, 66);;
+    background-color:#CB7113; /* rgb(42, 48, 66);*/
     box-shadow: none; 
 }
 body[data-sidebar-color="dark"] .navbar-custom {

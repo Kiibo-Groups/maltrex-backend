@@ -8,17 +8,17 @@
 
             <img src="{{ asset('assets/images/users/'.Auth::guard()->user()->logo) }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
             
-            <p class="text-muted left-user-info">{{ Auth::guard()->user()->name  }} </p>
+            <p class="text-white left-user-info">{{ Auth::guard()->user()->name  }} </p>
 
             <ul class="list-inline">
                 <li class="list-inline-item">
-                    <a href="{{ url('account') }}" class="text-muted left-user-info">
+                    <a href="{{ url('account') }}" class="text-white left-user-info">
                         <i class="mdi mdi-cog"></i>
                     </a>
                 </li>
 
                 <li class="list-inline-item">
-                    <a href="{{ url('/logout') }}">
+                    <a href="{{ url('/logout') }}" class="text-white">
                         <i class="mdi mdi-power"></i>
                     </a>
                 </li>
